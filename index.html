@@ -45,7 +45,6 @@
             padding: 0 1.5rem;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -122,7 +121,6 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -179,7 +177,6 @@
             100% { opacity: 1; }
         }
 
-        /* Buttons */
         .btn {
             padding: 0.75rem 2rem;
             border-radius: 50px;
@@ -259,7 +256,6 @@
             height: 18px;
         }
 
-        /* Section Titles */
         .section-title {
             text-align: center;
             margin: 6rem 0 3rem;
@@ -293,7 +289,6 @@
             border-radius: 2px;
         }
 
-        /* Products Grid */
         .products-grid {
             width: 100%;
             max-width: 1200px;
@@ -411,7 +406,6 @@
             transition-delay: calc(0.05s * var(--i));
         }
 
-        /* Payment Section */
         .payment-section {
             width: 100%;
             max-width: 1000px;
@@ -496,7 +490,6 @@
             box-shadow: 0 0 15px rgba(191, 187, 187, 0.3);
         }
 
-        /* Custom Email Section */
         .custom-email {
             width: 100%;
             max-width: 600px;
@@ -606,7 +599,6 @@
             color: var(--primary);
         }
 
-        /* Footer */
         footer {
             background: rgba(10, 10, 15, 0.8);
             backdrop-filter: blur(10px);
@@ -659,7 +651,6 @@
             font-size: clamp(0.8rem, 3vw, 0.9rem);
         }
 
-        /* Popups */
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -807,7 +798,6 @@
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
 
-        /* Notification Popup */
         .notification-popup {
             position: fixed;
             top: 0;
@@ -895,7 +885,6 @@
             box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -937,7 +926,6 @@
             animation: float 5s ease-in-out infinite;
         }
 
-        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -982,7 +970,6 @@
             cursor: pointer;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -1220,7 +1207,6 @@
         </div>
     </footer>
 
-    <!-- Purchase Popup -->
     <div class="popup-overlay" id="purchase-popup">
         <div class="popup-content">
             <div class="popup-header">
@@ -1229,12 +1215,10 @@
             </div>
             <p>Select an account to purchase:</p>
             <div class="account-list" id="account-list">
-                <!-- Account items will be dynamically added here -->
             </div>
         </div>
     </div>
 
-    <!-- Notification Popup -->
     <div class="notification-popup" id="notification-popup">
         <div class="notification-content">
             <div class="notification-icon">
@@ -1250,12 +1234,10 @@
     </div>
 
     <script>
-        // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
             document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Mobile Menu
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const closeMenuBtn = document.querySelector('.close-menu');
         const mobileMenu = document.querySelector('.mobile-menu');
@@ -1281,7 +1263,6 @@
             });
         });
 
-        // Smooth scroll for navigation
         document.getElementById('explore-btn').addEventListener('click', () => {
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         });
@@ -1294,7 +1275,6 @@
             });
         });
 
-        // Animation on scroll
         const animateOnScroll = () => {
             const elements = document.querySelectorAll('.animate-fadeInUp');
             elements.forEach(element => {
@@ -1309,7 +1289,6 @@
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
 
-        // Custom Select Functionality
         const selectHeader = document.querySelector('.select-header');
         const selectOptions = document.querySelector('.select-options');
 
@@ -1326,7 +1305,6 @@
             });
         });
 
-        // Close select dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.custom-select')) {
                 selectOptions.style.display = 'none';
@@ -1334,7 +1312,6 @@
             }
         });
 
-        // Purchase Popup Functionality
         const purchasePopup = document.getElementById('purchase-popup');
         const accountList = document.getElementById('account-list');
         
@@ -1349,14 +1326,12 @@
             ]
         };
 
-        // Open popup when purchase button is clicked
         document.querySelectorAll('.purchase-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const productType = btn.getAttribute('data-product');
                 populateAccountList(productType);
                 openPopup();
                 
-                // Add animation to the button
                 btn.classList.add('animate-float');
                 setTimeout(() => {
                     btn.classList.remove('animate-float');
@@ -1364,7 +1339,6 @@
             });
         });
 
-        // Populate account list based on product type
         function populateAccountList(productType) {
             accountList.innerHTML = '';
             
@@ -1383,7 +1357,6 @@
                     accountList.appendChild(accountItem);
                 });
 
-                // Add event listeners to Get buttons
                 document.querySelectorAll('.get-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const username = this.getAttribute('data-username');
@@ -1395,57 +1368,47 @@
             }
         }
 
-        // Open purchase popup
         function openPopup() {
             purchasePopup.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        // Close purchase popup
         function closePopup() {
             purchasePopup.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // Close popup when clicking the close button
         document.querySelector('.close-popup').addEventListener('click', closePopup);
 
-        // Close popup when clicking outside the content
         purchasePopup.addEventListener('click', (e) => {
             if (e.target === purchasePopup) {
                 closePopup();
             }
         });
 
-        // Notification Popup Functionality
         const notificationPopup = document.getElementById('notification-popup');
         const notificationMessage = document.getElementById('notification-message');
         const notificationBtn = document.getElementById('notification-btn');
 
-        // Show notification with custom message
         function showNotification(message) {
             notificationMessage.textContent = message;
             notificationPopup.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        // Close notification
         function closeNotification() {
             notificationPopup.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // Close notification when clicking the button
         notificationBtn.addEventListener('click', closeNotification);
 
-        // Close notification when clicking outside
         notificationPopup.addEventListener('click', (e) => {
             if (e.target === notificationPopup) {
                 closeNotification();
             }
         });
 
-        // Add hover effects to product cards
         document.querySelectorAll('.product-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 card.querySelectorAll('.features li').forEach((li, index) => {
@@ -1460,12 +1423,10 @@
             });
         });
 
-        // Check if device is mobile
         function isMobile() {
             return window.innerWidth <= 768;
         }
 
-        // Adjust layout based on screen size
         function adjustLayout() {
             const accountItems = document.querySelectorAll('.account-item');
             
